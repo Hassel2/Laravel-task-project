@@ -11,13 +11,15 @@ class TaskController extends Controller
 	public function show(Request $request) {
 		/* $task = Task::all(); */
 
-		$token = $request->bearerToken();	
-		$usr_data = Http::withHeaders([
-			'Accept'        => 'application/json',
-			'Authorization' => 'Bearer '.$token,
-		])->get('http://127.0.0.1:8000/api/user')->json();
+		/* $token = $request->bearerToken(); */	
+		/* $usr_data = Http::withHeaders([ */
+		/* 	'Accept'        => 'application/json', */
+		/* 	'Authorization' => 'Bearer '.$token, */
+		/* ])->get('http://127.0.0.1:8000/api/user')->json(); */
 
-		$task = Task::where('user_id','=', $usr_data['id'])->get();
+		/* $task = Task::where('user_id','=', $usr_data['id'])->get(); */
+		$task = Task::where('user_id','=', '11')->get();
+		dd($task);
 		return $this->sendResponse($task->toArray(), 'Tasks retrieved successfully');	
 	}
 
